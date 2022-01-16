@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[![Node.js CI](https://github.com/ashishsingh4u/chatbot-app/actions/workflows/node.js.yml/badge.svg)](https://github.com/ashishsingh4u/chatbot-app/actions/workflows/node.js.yml)
+
 ## Install Dependencies
 
 - npx create-react-app chatbot-app --template typescript
