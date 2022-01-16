@@ -83,8 +83,8 @@ function App() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+        <IconButton size="large" aria-label="show 5 new mails" color="inherit">
+          <Badge badgeContent={5} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -93,10 +93,10 @@ function App() {
       <MenuItem>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show 20 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={20} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -218,7 +218,7 @@ function App() {
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton
                   size="large"
-                  aria-label="show 4 new mails"
+                  aria-label="show 5 new mails"
                   color="inherit"
                 >
                   <Badge badgeContent={5} color="error">
@@ -227,7 +227,7 @@ function App() {
                 </IconButton>
                 <IconButton
                   size="large"
-                  aria-label="show 17 new notifications"
+                  aria-label="show 20 new notifications"
                   color="inherit"
                 >
                   <Badge badgeContent={20} color="error">
