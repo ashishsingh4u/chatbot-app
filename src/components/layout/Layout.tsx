@@ -18,16 +18,10 @@ import Badge from "@mui/material/Badge";
 import Tooltip from "@mui/material/Tooltip";
 
 import "./Layout.css";
+import { Link } from "react-router-dom";
+import config from "../../config/config";
 
 const Layout = (): JSX.Element => {
-  const pages = ["Questions", "Categories", "Admin"];
-
-  const menuItems = [
-    { title: "Profile" },
-    { title: "My account" },
-    { title: "Logout" },
-  ];
-
   const mobileMenuId = "primary-search-account-menu-mobile";
 
   const menuId = "primary-search-account-menu";
@@ -133,7 +127,7 @@ const Layout = (): JSX.Element => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {menuItems.map((item) => {
+      {config.menuItems.map((item) => {
         const { title } = item;
         return (
           <MenuItem key={title} onClick={handleMenuClose}>
@@ -155,7 +149,9 @@ const Layout = (): JSX.Element => {
               component="div"
               sx={{ mr: 1, display: { xs: "none", md: "flex" } }}
             >
-              <img src="logo192.png" alt="logo" width={"40px"} />
+              <Link to="/">
+                <img src="logo192.png" alt="Home" width={"40px"} />
+              </Link>
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -187,9 +183,14 @@ const Layout = (): JSX.Element => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                {config.pages.map((page) => (
+                  <MenuItem
+                    component={Link}
+                    to={page.path}
+                    key={page.name}
+                    onClick={handleCloseNavMenu}
+                  >
+                    <Typography textAlign="center">{page.name}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -201,19 +202,23 @@ const Layout = (): JSX.Element => {
               component="div"
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
             >
-              <img src="logo192.png" alt="logo" width={"40px"} />
+              <Link to="/">
+                <img src="logo192.png" alt="Home" width={"40px"} />
+              </Link>
             </Typography>
 
             <Box sx={{ flexGrow: 16, display: { xs: "none", md: "flex" } }} />
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
+              {config.pages.map((page) => (
                 <Button
-                  key={page}
+                  component={Link}
+                  to={page.path}
+                  key={page.name}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  {page}
+                  {page.name}
                 </Button>
               ))}
             </Box>

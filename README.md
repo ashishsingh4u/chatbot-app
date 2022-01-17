@@ -10,6 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - npm install @mui/icons-material
 - npm install @mui/material
 - npm i @emotion/react @emotion/styled
+- npm install react-router-dom react-router
 
 ## Available Scripts
 

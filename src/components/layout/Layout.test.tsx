@@ -4,13 +4,13 @@ import Layout from "./Layout";
 
 test("Should render Questions Tab", () => {
   render(<Layout />);
-  const element: HTMLElement[] = screen.getAllByText(/Questions/i);
+  const element: HTMLElement[] = screen.getAllByText(/Question/i);
   expect(element).toBeTruthy();
 });
 
 test("Should render Categories Tab", () => {
   render(<Layout />);
-  const element: HTMLElement[] = screen.getAllByText(/Categories/i);
+  const element: HTMLElement[] = screen.getAllByText(/Category/i);
   expect(element).toBeTruthy();
 });
 
