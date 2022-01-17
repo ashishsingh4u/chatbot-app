@@ -19,7 +19,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 import "./Layout.css";
 
-function Layout() {
+const Layout = (): JSX.Element => {
   const pages = ["Questions", "Categories", "Admin"];
 
   const menuItems = [
@@ -271,6 +271,6 @@ function Layout() {
       {renderMenu}
     </Box>
   );
-}
+};
 
 export default Layout;
