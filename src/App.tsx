@@ -1,12 +1,13 @@
 import React from "react";
-import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useRoutes } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 import "./App.css";
 import routes from "./config/routes";
-import { orange } from "@mui/material/colors";
-import { Checkbox } from "@mui/material";
+// import { styled } from "@mui/material/styles";
+// import { orange } from "@mui/material/colors";
+// import { Checkbox } from "@mui/material";
 
 // declare module "@mui/material/styles" {
 //   interface Theme {
