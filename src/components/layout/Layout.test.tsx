@@ -1,6 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import Layout from "./Layout";
+import { render } from "../../test-utils";
 
 test("Should render Questions Tab", () => {
   render(<Layout />);
