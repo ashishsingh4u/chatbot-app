@@ -14,12 +14,15 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Badge from "@mui/material/Badge";
 import Tooltip from "@mui/material/Tooltip";
 
 import "./Layout.css";
 import { Link } from "react-router-dom";
 import config from "../../config/config";
+import { PaletteMode } from "@mui/material";
 
 const Layout = (): JSX.Element => {
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -32,6 +35,8 @@ const Layout = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
+  const [themeMode, setThemeMode] = React.useState<PaletteMode>("light");
+
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const isMenuOpen = Boolean(anchorEl);
 
@@ -60,6 +65,14 @@ const Layout = (): JSX.Element => {
     setAnchorEl(event.currentTarget);
   };
 
+  const toggleColorMode = (event: React.MouseEvent<HTMLElement>) => {
+    if (themeMode === "light") {
+      setThemeMode("dark");
+    } else {
+      setThemeMode("light");
+    }
+  };
+
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -76,6 +89,12 @@ const Layout = (): JSX.Element => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <MenuItem onClick={toggleColorMode}>
+        <IconButton size="large" color="inherit" aria-label="Switch Theme">
+          {themeMode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+        <p>Switch Theme</p>
+      </MenuItem>
       <MenuItem>
         <IconButton size="large" aria-label="show 5 new mails" color="inherit">
           <Badge badgeContent={5} color="error">
@@ -224,6 +243,19 @@ const Layout = (): JSX.Element => {
             </Box>
 
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleColorMode}
+              >
+                {themeMode === "dark" ? (
+                  <Brightness7Icon />
+                ) : (
+                  <Brightness4Icon />
+                )}
+              </IconButton>
               <IconButton
                 size="large"
                 aria-label="show 5 new mails"
