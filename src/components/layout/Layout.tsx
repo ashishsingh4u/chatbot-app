@@ -18,11 +18,11 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Badge from "@mui/material/Badge";
 import Tooltip from "@mui/material/Tooltip";
+import { Link } from "react-router-dom";
 
 import "./Layout.css";
-import { Link } from "react-router-dom";
 import config from "../../config/config";
-import { PaletteMode } from "@mui/material";
+import { ThemeContext, themes } from "../../config/theme-context";
 
 const Layout = (): JSX.Element => {
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -35,7 +35,8 @@ const Layout = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
-  const [themeMode, setThemeMode] = React.useState<PaletteMode>("light");
+
+  const themeContext = React.useContext(ThemeContext);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const isMenuOpen = Boolean(anchorEl);
@@ -66,11 +67,7 @@ const Layout = (): JSX.Element => {
   };
 
   const toggleColorMode = (event: React.MouseEvent<HTMLElement>) => {
-    if (themeMode === "light") {
-      setThemeMode("dark");
-    } else {
-      setThemeMode("light");
-    }
+    themeContext.toggleTheme();
   };
 
   const renderMobileMenu = (
@@ -91,7 +88,11 @@ const Layout = (): JSX.Element => {
     >
       <MenuItem onClick={toggleColorMode}>
         <IconButton size="large" color="inherit" aria-label="Switch Theme">
-          {themeMode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+          {themeContext.theme === themes.darkTheme ? (
+            <Brightness7Icon />
+          ) : (
+            <Brightness4Icon />
+          )}
         </IconButton>
         <p>Switch Theme</p>
       </MenuItem>
@@ -250,7 +251,7 @@ const Layout = (): JSX.Element => {
                 aria-label="menu"
                 onClick={toggleColorMode}
               >
-                {themeMode === "dark" ? (
+                {themeContext.theme === themes.darkTheme ? (
                   <Brightness7Icon />
                 ) : (
                   <Brightness4Icon />

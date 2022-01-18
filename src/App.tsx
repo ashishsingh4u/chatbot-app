@@ -1,10 +1,11 @@
 import React from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useRoutes } from "react-router-dom";
+import { Theme, ThemeProvider } from "@mui/material";
 
 import Layout from "./components/layout/Layout";
 import "./App.css";
 import routes from "./config/routes";
+import { ThemeContext, themes } from "./config/theme-context";
 // import { styled } from "@mui/material/styles";
 // import { orange } from "@mui/material/colors";
 // import { Checkbox } from "@mui/material";
@@ -45,22 +46,28 @@ import routes from "./config/routes";
 // }
 
 function App() {
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-      primary: {
-        main: "#1976d2",
-      },
-    },
-  });
-
   const routing = useRoutes(routes);
 
+  const [toggleTheme, setToggleTheme] = React.useState<Theme>(themes.darkTheme);
+
+  const toggleContextTheme = (): void => {
+    setToggleTheme(
+      toggleTheme === themes.darkTheme ? themes.lightTheme : themes.darkTheme
+    );
+  };
+
+  const state = {
+    theme: toggleTheme,
+    toggleTheme: toggleContextTheme,
+  };
+
   return (
-    <ThemeProvider theme={darkTheme}>
-      <Layout />
-      {routing}
-    </ThemeProvider>
+    <ThemeContext.Provider value={state}>
+      <ThemeProvider theme={toggleTheme}>
+        <Layout />
+        {routing}
+      </ThemeProvider>
+    </ThemeContext.Provider>
   );
 }
 
