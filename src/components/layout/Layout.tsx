@@ -240,7 +240,15 @@ const Layout = (): JSX.Element => {
                   key={page.name}
                   onClick={handleCloseNavMenu}
                   color="secondary"
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  variant="contained"
+                  disableElevation
+                  style={{
+                    marginRight: "7px",
+                    marginLeft: "7px",
+                    fontWeight: "bolder",
+                    textTransform: "none",
+                  }}
+                  sx={{ my: 2, display: "block" }}
                 >
                   {page.name}
                 </Button>
