@@ -1,5 +1,5 @@
 import React from "react";
-import IPage from "../../interfaces/page";
+import IPage from "../../interfaces/Page";
 import "./Category.css";
 
 function Category(props: IPage) {
