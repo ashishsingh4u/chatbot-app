@@ -1,69 +1,59 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
-import { Theme, ThemeProvider } from "@mui/material";
+import { PaletteMode } from "@mui/material";
 
 import Layout from "./components/layout/Layout";
 import "./App.css";
 import Routes from "./config/Routes";
-import { ThemeContext, Themes } from "./config/Theme-Context";
-// import { styled } from "@mui/material/styles";
-// import { orange } from "@mui/material/colors";
-// import { Checkbox } from "@mui/material";
-
-// declare module "@mui/material/styles" {
-//   interface Theme {
-//     status: {
-//       danger: string;
-//     };
-//   }
-//   // allow configuration using `createTheme`
-//   interface ThemeOptions {
-//     status?: {
-//       danger?: string;
-//     };
-//   }
-// }
-
-// const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
-//   color: theme.status.danger,
-//   "&.Mui-checked": {
-//     color: theme.status.danger,
-//   },
-// }));
-
-// const theme = createTheme({
-//   status: {
-//     danger: orange[500],
-//   },
-// });
-
-// export default function CustomStyles() {
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <CustomCheckbox defaultChecked />
-//     </ThemeProvider>
-//   );
-// }
+import { ThemeContext } from "./config/Theme-Context";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function App() {
   const routing = useRoutes(Routes);
 
-  const [toggleTheme, setToggleTheme] = React.useState<Theme>(Themes.darkTheme);
+  const [mode, setMode] = React.useState<"light" | "dark">("dark");
 
-  const toggleContextTheme = (): void => {
-    setToggleTheme(
-      toggleTheme === Themes.darkTheme ? Themes.lightTheme : Themes.darkTheme
-    );
-  };
+  const getDesignTokens = (mode: PaletteMode) => ({
+    palette: {
+      mode,
+      ...(mode === "light"
+        ? {
+            // palette values for light mode
+            primary: {
+              main: "#3f51b5",
+            },
+            secondary: {
+              main: "#f50057",
+            },
+          }
+        : {
+            // palette values for dark mode
+            primary: {
+              main: "#3c3c3c",
+            },
+            secondary: {
+              main: "#12ef91",
+            },
+          }),
+    },
+  });
 
-  const state = {
-    theme: toggleTheme,
-    toggleTheme: toggleContextTheme,
-  };
+  const colorMode = React.useMemo(
+    () => ({
+      toggleTheme: () => {
+        setMode((prevMode: string) =>
+          prevMode === "light" ? "dark" : "light"
+        );
+      },
+    }),
+    []
+  );
+
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
-    <ThemeContext.Provider value={state}>
-      <ThemeProvider theme={toggleTheme}>
+    <ThemeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
         <Layout />
         {routing}
       </ThemeProvider>

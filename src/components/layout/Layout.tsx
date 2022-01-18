@@ -22,7 +22,8 @@ import { Link } from "react-router-dom";
 
 import "./Layout.css";
 import Config from "../../config/Config";
-import { ThemeContext, Themes } from "../../config/Theme-Context";
+import { ThemeContext } from "../../config/Theme-Context";
+import { useTheme } from "@mui/material/styles";
 
 const Layout = (): JSX.Element => {
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -35,6 +36,8 @@ const Layout = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
+
+  const theme = useTheme();
 
   const themeContext = React.useContext(ThemeContext);
 
@@ -88,7 +91,7 @@ const Layout = (): JSX.Element => {
     >
       <MenuItem onClick={toggleColorMode}>
         <IconButton size="large" color="inherit" aria-label="Switch Theme">
-          {themeContext.theme === Themes.darkTheme ? (
+          {theme.palette.mode === "dark" ? (
             <Brightness7Icon />
           ) : (
             <Brightness4Icon />
@@ -236,6 +239,7 @@ const Layout = (): JSX.Element => {
                   to={page.path}
                   key={page.name}
                   onClick={handleCloseNavMenu}
+                  color="secondary"
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
                   {page.name}
@@ -251,7 +255,7 @@ const Layout = (): JSX.Element => {
                 aria-label="menu"
                 onClick={toggleColorMode}
               >
-                {themeContext.theme === Themes.darkTheme ? (
+                {theme.palette.mode === "dark" ? (
                   <Brightness7Icon />
                 ) : (
                   <Brightness4Icon />
