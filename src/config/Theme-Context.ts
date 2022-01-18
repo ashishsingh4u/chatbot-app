@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 import React from "react";
 
-export const themes = {
+export const Themes = {
   darkTheme: createTheme({
     palette: {
       mode: "dark",
@@ -18,6 +18,6 @@ export const themes = {
 };
 
 export const ThemeContext = React.createContext({
-  theme: themes.darkTheme,
+  theme: Themes.darkTheme,
   toggleTheme: () => {},
 });

@@ -3,7 +3,7 @@ import Category from "../components/category/Category";
 import Home from "../components/home/Home";
 import Question from "../components/question/Question";
 
-const routes = [
+const Routes = [
   {
     path: "/",
     element: <Home name="Home" />,
@@ -22,4 +22,4 @@ const routes = [
   },
 ];
 
-export default routes;
+export default Routes;

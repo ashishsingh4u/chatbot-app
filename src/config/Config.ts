@@ -1,4 +1,4 @@
-const config = {
+const Config = {
   pages: [
     { name: "Question", path: "/question" },
     { name: "Category", path: "/category" },
@@ -11,4 +11,4 @@ const config = {
   ],
 };
 
-export default config;
+export default Config;

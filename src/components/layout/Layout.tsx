@@ -21,8 +21,8 @@ import Tooltip from "@mui/material/Tooltip";
 import { Link } from "react-router-dom";
 
 import "./Layout.css";
-import config from "../../config/config";
-import { ThemeContext, themes } from "../../config/theme-context";
+import Config from "../../config/Config";
+import { ThemeContext, Themes } from "../../config/Theme-Context";
 
 const Layout = (): JSX.Element => {
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -88,7 +88,7 @@ const Layout = (): JSX.Element => {
     >
       <MenuItem onClick={toggleColorMode}>
         <IconButton size="large" color="inherit" aria-label="Switch Theme">
-          {themeContext.theme === themes.darkTheme ? (
+          {themeContext.theme === Themes.darkTheme ? (
             <Brightness7Icon />
           ) : (
             <Brightness4Icon />
@@ -147,7 +147,7 @@ const Layout = (): JSX.Element => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {config.menuItems.map((item) => {
+      {Config.menuItems.map((item) => {
         const { title } = item;
         return (
           <MenuItem key={title} onClick={handleMenuClose}>
@@ -203,7 +203,7 @@ const Layout = (): JSX.Element => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {config.pages.map((page) => (
+                {Config.pages.map((page) => (
                   <MenuItem
                     component={Link}
                     to={page.path}
@@ -230,7 +230,7 @@ const Layout = (): JSX.Element => {
             <Box sx={{ flexGrow: 16, display: { xs: "none", md: "flex" } }} />
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {config.pages.map((page) => (
+              {Config.pages.map((page) => (
                 <Button
                   component={Link}
                   to={page.path}
@@ -251,7 +251,7 @@ const Layout = (): JSX.Element => {
                 aria-label="menu"
                 onClick={toggleColorMode}
               >
-                {themeContext.theme === themes.darkTheme ? (
+                {themeContext.theme === Themes.darkTheme ? (
                   <Brightness7Icon />
                 ) : (
                   <Brightness4Icon />
